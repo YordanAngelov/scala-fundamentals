@@ -1,0 +1,2 @@
+# scala-fundamentals
+training repo
