@@ -1,13 +1,28 @@
 package app
 
+import utils.Helpers
+
 import scala.io.StdIn
 
 object Greeter extends App {
 
-  def greet(n: String): Unit = println(s"Hello $n!")
+  val name = Prompt.ask("What is your name? ")
+  val age = Prompt.ask("What's your age? ")
 
-  val name = StdIn.readLine("What is your name? ")
+  val p = new Person(name, age.toInt)
 
-  greet(name)
+  println(p.speak())
+  while(repeat) println(p.speak())
+
+  def repeat(): Boolean = {
+    val c = StdIn.readLine("Do you want to get another greeting? ")
+    if(Helpers.affirmations.contains(c)) true
+    else {
+      println("Suit yourself")
+      false
+    }
+  }
 
 }
+
+
