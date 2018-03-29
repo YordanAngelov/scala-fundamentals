@@ -12,8 +12,8 @@ class Person(name: String, age: Int, private val bankAccount: BankAccount) {
     } else {
       println(s"Hello $name, you are $age $years old!")
       if (age < 20) "How are you doing, fellow kid?"
-      else if (age >= 20 & age < 40) s"Since you are $age old, you must be a respectable professional.\n" +
-        s"You have ${bankAccount.balance} in your account."
+      else if (age >= 20 & age < 40) s"Since you are $age, you must be a respectable professional.\n" +
+        s"You have ${bankAccount} in your account."
       else "Do you know Matt?"
     }
   }
@@ -25,6 +25,8 @@ abstract class BankAccount(accountNumber: String, val balance: Double) {
   def withdraw(amount: Double): BankAccount
 
   def deposit(amount: Double): BankAccount
+
+  override def toString: String = s"Account number: $accountNumber, balance: $balance"
 
 }
 
@@ -49,13 +51,21 @@ final class SavingsAccount(accountNumber: String, balance: Double) extends BankA
 
 final class CashISASavingsAccount(accountNumber: String, balance: Double) extends BankAccount(accountNumber, balance) {
 
+  private val depositThreshold: Double = 200.00
+
   override def withdraw(amount: Double): BankAccount = {
     println(s"You can't withdraw yet mate, it has been less than an hour than you deposited! Chill!")
     this
   }
 
   override def deposit(amount: Double): BankAccount = {
-    new CashISASavingsAccount(accountNumber, balance + amount)
+    if (amount > depositThreshold) {
+      val difference = amount - depositThreshold
+      println(s"You can't deposit more than £$depositThreshold. Excess: £$difference.")
+      new CashISASavingsAccount(accountNumber, balance + depositThreshold)
+    } else {
+      new CashISASavingsAccount(accountNumber, balance + amount)
+    }
   }
 
 }
