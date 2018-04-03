@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcc66062-7fa8-47dd-83cd-ef418092df91" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/app/models/PetRepository.scala" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/models/Pet.scala" afterPath="$PROJECT_DIR$/src/main/scala/app/models/Pet.scala" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,11 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pet.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Pet.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/app/models/Pet.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="432">
+              <caret line="24" column="38" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PetRepository.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/app/models/PetRepository.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -86,6 +98,7 @@
         <option value="$PROJECT_DIR$/src/main/scala/app/models/Person.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/Greeter.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/app/models/Pet.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/app/models/PetRepository.scala" />
       </list>
     </option>
   </component>
@@ -410,12 +423,12 @@
       <updated>1522240877157</updated>
       <workItem from="1522240879980" duration="652000" />
       <workItem from="1522310699768" duration="2789000" />
-      <workItem from="1522744053040" duration="14655000" />
+      <workItem from="1522744053040" duration="15201000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27006000" />
+    <option name="totallyTimeSpent" value="27552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -820,8 +833,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/app/models/Pet.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        <state relative-caret-position="432">
+          <caret line="24" column="38" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/app/models/PetRepository.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding />
         </state>
       </provider>
