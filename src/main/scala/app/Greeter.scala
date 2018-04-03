@@ -19,8 +19,8 @@ object Greeter extends App {
   val normalAccount = new CashISASavingsAccount("12334", 100.00)
   val loyalAccountDeposited = normalAccount.deposit(300)
 
-  val loyal = new Person("Loyal customer", 22, loyalAccountDeposited)
-  val p = new Person(name, age.toInt, withdrawn)
+  val loyal = new Person("Loyal customer", 22, Seq(loyalAccountDeposited))
+  val p = new Person(name, age.toInt, Seq(withdrawn))
 
   def checkUser(): Unit = if (check == "Secret") println(p.speak()) else println(loyal.speak())
 
