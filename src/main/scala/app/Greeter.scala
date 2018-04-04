@@ -1,6 +1,6 @@
 package app
 
-import app.models.{CashISASavingsAccount, Person}
+import app.models._
 import app.views.Prompt
 
 object Greeter extends App {
@@ -79,6 +79,27 @@ object Greeter extends App {
 
 //  You can also use tuple.foreach
   t.productIterator.foreach(x ⇒ println(x))
+
+  val d = Dog.withName("Bruce Banner").age
+
+//  Pattern matching - can be used for primitive types, e.g. String, Int, etc., or Type of an object, e.g. Pet, etc.
+  val numero = 1
+
+  def intToString(n: Int): String = n match{
+    case 0 ⇒ "zero"
+    case 1 ⇒ "one"
+    case 2 ⇒ "two"
+    case _ ⇒ "above two"
+  }
+
+  intToString(numero)
+
+  val d = Dog("Geoff", 35)
+
+  def isDog(pet: Pet): Boolean = pet match {
+    case d: Dog ⇒ true
+    case c: Cat ⇒ false
+  }
+
+  isDog(d)
 }
-
-
