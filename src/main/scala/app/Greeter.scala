@@ -99,6 +99,7 @@ object Greeter extends App {
   intToString(numero)
 
   val d = Dog("Geoff", 35)
+  val barry = Dog("barry", 2)
 
   def isDog(pet: Pet): Boolean = pet match {
     case d: Dog ⇒ true
@@ -110,7 +111,8 @@ object Greeter extends App {
 
   //  In this case, we are saying that when we deconstruct out Pet, we do not want to assign the age to a variable
   //  as we are not going to use it. Hence, we replace it with _. Basically, we don't care about it, because we don't use it
-  //  in this function
+  //  in this function.
+  //  The first case statement has a guard which checks if the name value equals geoff
   def whoDis(pet: Pet) = pet match {
     case Dog(name, age) if name.equalsIgnoreCase("geoff") ⇒ s"This is top dog, my name is $name, give me your lunch!" +
       s" I am the eldest at $age years old.".stripMargin
@@ -119,6 +121,11 @@ object Greeter extends App {
   }
 
   whoDis(d)
+  whoDis(barry)
 
+  val c: Option[Pet] = Some(Cat("Tom", 3))
+  val n: Option[Pet] = None
 
+  n.isEmpty   // true
+  c.isDefined // true - opposite of isEmpty
 }
