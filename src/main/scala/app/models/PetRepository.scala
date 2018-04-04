@@ -11,17 +11,17 @@ object PetRepository {
 
   def findByName(name: String): Option[Pet] = None
 
-  def dogs(): List[Pet] = Nil
+  def dogs(): List[Pet] = _pets.toList
 
-  def cats(): List[Pet] = Nil
+  def cats(): List[Pet] = _pets.toList
 
-  def other(): List[Pet] = Nil
+  def other(): List[Pet] = _pets.toList
 
 //  * is syntax for varargs, e.g. random arguments(?)
-  def add(pet: Pet*): List[Pet] = ???
+  def add(pet: Pet*): List[Pet] = _pets.toList
 
-  def removeByName(name: String): List[Pet] = ???
+  def removeByName(name: String): List[Pet] = _pets.toList
 
-  def update(pet: Pet): List[Pet] = ???
+  def update(pet: Pet): List[Pet] = _pets.toList
 
 }
