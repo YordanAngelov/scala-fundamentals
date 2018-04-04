@@ -69,23 +69,27 @@ object Greeter extends App {
 
   practiceMultipleElementsForFilters()
 
-//  Tuple example; the upper limit of objects a tuple can hold is *currently* 22
-//  Anything beyond that will require you to use a collection
+  //  Tuple example; the upper limit of objects a tuple can hold is *currently* 22
+  //  Anything beyond that will require you to use a collection
   val t: (Int, String, Person) = (1, "hello", new Person("John Doe", 21))
 
-  val number = t._1   // returns the 1st element, e.g. 1
-  val string = t._2   // returns the 2nd element, e.g. hello
-  val person = t._3   // returns the 3rd element, e.g. Person("John Doe", 21)
+  val number = t._1 // returns the 1st element, e.g. 1
+  val string = t._2 // returns the 2nd element, e.g. hello
+  val person = t._3 // returns the 3rd element, e.g. Person("John Doe", 21)
 
-//  You can also use tuple.foreach
+  //  You can also use tuple.foreach
   t.productIterator.foreach(x ⇒ println(x))
 
-  val d = Dog.withName("Bruce Banner").age
+  val doggo = Dog.withName("Bruce Banner").age
 
-//  Pattern matching - can be used for primitive types, e.g. String, Int, etc., or Type of an object, e.g. Pet, etc.
+  //  Pattern matching - can be used for:
+  //  primitive types, e.g. String, Int, etc.,
+  //  type of an object, e.g. Pet, etc.,
+  //  case classes,
+  //  etc.
   val numero = 1
 
-  def intToString(n: Int): String = n match{
+  def intToString(n: Int): String = n match {
     case 0 ⇒ "zero"
     case 1 ⇒ "one"
     case 2 ⇒ "two"
@@ -99,7 +103,22 @@ object Greeter extends App {
   def isDog(pet: Pet): Boolean = pet match {
     case d: Dog ⇒ true
     case c: Cat ⇒ false
+    case _ ⇒ false // right now, there are only classes of pets (dog and cat) so this is obsolete
   }
 
   isDog(d)
+
+  //  In this case, we are saying that when we deconstruct out Pet, we do not want to assign the age to a variable
+  //  as we are not going to use it. Hence, we replace it with _. Basically, we don't care about it, because we don't use it
+  //  in this function
+  def whoDis(pet: Pet) = pet match {
+    case Dog(name, age) if name.equalsIgnoreCase("geoff") ⇒ s"This is top dog, my name is $name, give me your lunch!" +
+      s" I am the eldest at $age years old.".stripMargin
+    case Dog(name, _) ⇒ s"This is $name, I am only a dog."
+    case Cat(name, _) ⇒ s"This is a cat, and their name is $name."
+  }
+
+  whoDis(d)
+
+
 }

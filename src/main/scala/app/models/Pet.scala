@@ -4,27 +4,26 @@ package app.models
 sealed trait Pet {
 
   val name: String
-  def speak: String
+  val age: Int
 
-//  Traits can have partial implementation
+  def speak: String = "hello"
+
+  //  Traits can have partial implementation
 
 }
 
 //  We use case classes when:
 //  a) we want a class with immutable state
 //  b) we don't want any logic within the case class, though it is possible to define methods within it
-final case class Cat(name: String) extends Pet{
+final case class Cat(name: String, age: Int) extends Pet {
 
   override def speak: String = "Meow!"
 
 }
 
-final case class Dog(name: String, private val personYears: Int) extends Pet{
+final case class Dog(name: String, age: Int) extends Pet {
 
-  override val speak: String = "Woof!"
-
-  import Dog._
-  def age = calculateAgeInDogYears(personYears)
+  override def speak: String = "Woof!"
 
 }
 
@@ -36,8 +35,5 @@ final case class Dog(name: String, private val personYears: Int) extends Pet{
 object Dog {
 
   def withName(name: String) = new Dog(name, 2)
-
-  private def calculateAgeInDogYears(age: Int) = age*7
-
 }
 
