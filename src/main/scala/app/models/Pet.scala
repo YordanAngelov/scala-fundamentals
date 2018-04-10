@@ -8,9 +8,9 @@ sealed trait Pet {
 
   def speak: String = "hello"
 
-  //  Traits can have partial implementation
-
 }
+//  Traits can have partial implementation
+
 
 //  We use case classes when:
 //  a) we want a class with immutable state

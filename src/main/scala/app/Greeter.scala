@@ -126,6 +126,29 @@ object Greeter extends App {
   val c: Option[Pet] = Some(Cat("Tom", 3))
   val n: Option[Pet] = None
 
-  n.isEmpty   // true
-  c.isDefined // true - opposite of isEmpty
+  n.isEmpty   // will return true
+  c.isDefined // will return true (it's calling a different value) - opposite of isEmpty
+
+  val x: Pet = c.get // returns Cat("Tom", 3)
+  val y: Pet = n.get // returns NoSuchElementException
+
+  // ***************************
+  // *** ANONYMOUS FUNCTIONS ***
+  // ***************************
+  val bankList: List[BankAccount] = List(cashisa, normalAccount)
+
+  //  This line...
+  bankList.foldLeft(0.00)((accumulator, BankAccount) ⇒ accumulator + BankAccount.balance)
+
+  //  ... equals this
+  def add(acc: Double, account: BankAccount) = acc + account.balance
+  bankList.foldLeft(0.00)((acc, account) ⇒ add(acc, account))
+
+  // A nicer implementation would be
+  val addition = (acc: Double, account: BankAccount) ⇒ acc + account.balance
+  bankList.foldLeft(0.00)(addition)
+
+  // An even simpler implementation
+  def totalBalance = bankList.map(_.balance).sum
+
 }
