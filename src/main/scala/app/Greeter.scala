@@ -151,4 +151,6 @@ object Greeter extends App {
   // An even simpler implementation
   def totalBalance = bankList.map(_.balance).sum
 
+  bankList.foldLeft(0.00)( ⇒ )
+
 }
