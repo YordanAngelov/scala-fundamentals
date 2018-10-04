@@ -3,7 +3,7 @@ package app
 import app.models._
 import app.views.Prompt
 
-object Greeter extends App {
+object Greeter {
 
   val check = Prompt.ask("Who are you? ")
   val name = Prompt.ask("What is your name? ")
@@ -126,7 +126,7 @@ object Greeter extends App {
   val c: Option[Pet] = Some(Cat("Tom", 3))
   val n: Option[Pet] = None
 
-  n.isEmpty   // will return true
+  n.isEmpty // will return true
   c.isDefined // will return true (it's calling a different value) - opposite of isEmpty
 
   val x: Pet = c.get // returns Cat("Tom", 3)
@@ -142,6 +142,7 @@ object Greeter extends App {
 
   //  ... equals this
   def add(acc: Double, account: BankAccount) = acc + account.balance
+
   bankList.foldLeft(0.00)((acc, account) ⇒ add(acc, account))
 
   // A nicer implementation would be
@@ -151,6 +152,62 @@ object Greeter extends App {
   // An even simpler implementation
   def totalBalance = bankList.map(_.balance).sum
 
-  bankList.foldLeft(0.00)( ⇒ )
+  // ******************************
+  // *** HIGHER ORDER FUNCTIONS ***
+  // ******************************
+  def sumAndMultipleBy(f: Double => Double) = bankList.map(x => f(x.balance)).sum
+
+  Prompt.reply(person.sumAndMyltipleBy(_ * 2))
+
+  // *************************
+  // *** PARTIAL FUNCTIONS ***
+  // *************************
+  // Every partial function must implement an apply and isDefinedAt method, where:
+  // a) apply() is the function that gets called when passing in a value to the function call, i.e.
+  // def(0) is the same as def.apply(0)
+  // b) isDefinedAt is the function which checks if the input can be accepted by the function, i.e.
+  // can we pass 0 as a parameter to the function. This returns a Boolean value
+  val divide = new PartialFunction[Int, Int] {
+    def apply(x: Int) = 42/x
+    def isDefinedAt(x: Int): Boolean = x != 0
+  }
+
+  // A more concise way to rewrite the previous code is:
+  val divide : PartialFunction[Int, Int] = {
+    case d: Int if d != 0 ⇒ 42 / d
+  }
+
+  List(0, 1, 2, 3, 4).map(divide) // this would fail as there isn't a case statement in divide that handles 0
+  List(0, 1, 2, 3, 4).collect(divide) // collect calls isDefinedAt() method first before mapping - if the input cannot be handle, collect discards it from the collection and continues
+
+  val isEven: PartialFunction[Int, String] = {
+    case x: Int if x % 2 == 0 ⇒ s"$x is even"
+  }
+
+  val isOdd: PartialFunction[Int, String] = {
+    case x: Int if x % 2 == 1 ⇒ s"$x is odd"
+  }
+
+  val numbers = 1 to 5
+  val evenNumbers = numbers collect isEven
+  val isEvenOrOdd = isEven orElse isOdd
+
+  val allNumbers: IndexedSeq[String] = numbers map isEvenOrOdd
+
+  val double = (n: Int) ⇒ n * 2
+  val plusOne = (n: Int) ⇒ n + 1
+
+  // PartialFunctions also have a compose and andThen function
+  // andThen executes the first function, then executes the second one
+  val doublePlusOne = double andThen plusOne
+  // compose executes the first function for each element in the list, then passing on that value to the second function, e.g.
+  // instead of double + plusOne, it will be double(plusOne)
+  val doublePlusOne = double compose plusOne
+
+  val numberList = List(1, 2, 3, 6, 8, 12, 45, 68)
+  numberList.map(doublePlusOne)
+  numberList.foldLeft(0){
+    (z,i) ⇒ z + i * 2
+  }
 
 }
